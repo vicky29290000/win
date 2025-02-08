@@ -1,0 +1,28 @@
+const mongoose = require('mongoose');
+
+// Define the schema for the User model
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: { type: String, unique: true },
+});
+
+// Create the User model
+const User = mongoose.model('User', userSchema);
+
+async function main() {
+  // Connect to MongoDB Atlas (Replace the URL with your own)
+  await mongoose.connect('mongodb+srv://vigneshnehru38:U8pWXCTpNtiNIBcS/myDatabase?retryWrites=true&w=majority');
+
+  // Create a new user
+  const user = new User({ name: 'Alice', email: 'alice@example.com' });
+  await user.save();
+
+  // Fetch all users
+  const users = await User.find();
+  console.log('All users:', users);
+
+  // Disconnect from MongoDB
+  await mongoose.disconnect();
+}
+
+main().catch((error) => console.error(error));
