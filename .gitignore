@@ -18,6 +18,7 @@ yarn-error.log*
 
 # env files
 .env*
+DATABASE_URL="mongodb+srv://vigneshnehru38:U8pWXCTpNtiNIBcS/mydatabase"
 
 # vercel
 .vercel
